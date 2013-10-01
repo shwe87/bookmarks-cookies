@@ -1,0 +1,5 @@
+<script>
+addon.port.on('message', function(msg) {
+  addon.port.emit('message', msg + " World!")
+})
+</script>
