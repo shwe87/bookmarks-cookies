@@ -1,26 +1,65 @@
 var bookmarks = require('./bookmark.js');
+var history = require('./history.js');
 
 
+var myWidget = require("sdk/widget").Widget({
+  id: "myWidget",
+  label: "Django test",
+  width:60,
+  content: "Bookmarks",
+  contentScriptWhen: 'ready',
+  onClick: getbook
+});
+
+
+//history.queryHistory();
 var folderIds = bookmarks.getFoldersId();
+var allBookmarks = new Array();
+function getbook(){
 for each (var id in folderIds){
-	console.log(bookmarks.nameFolder(id));
+	//var b = new Array();
+	//var uri = new Array();
+	var folder = new Array();
+	//var sub = new Array();
+	var b = {};
+	//console.log("Folder = " + bookmarks.nameFolder(id));
+	//b.push(bookmarks.nameFolder(id));
+	b.main = bookmarks.nameFolder(id);
 	var children = bookmarks.getFoldersChildren(id);
+	console.log(JSON.stringify(children) + "\r\n\r\n\r\n");
 	// children will be an array of all the children of the folder:
-	for (j=0;j<children.length;j++){
+	/*for (j=0;j<children.length;j++){
+		var uri = new Array();
+		var sub = new Array();
 		var ifURI = bookmarks.ifUri(children[j]);
 		var ifSubFolder = bookmarks.ifSubFolder(children[j]);
 		if (ifURI == true){
-			console.log(children[j].title);
+			//b.push(children[j].title);
+			//console.log("URI = " + children[j].title);
+			uri.push(children[j].title);			
 		}
-		else if (ifSubFolder == true){
-			console.log(children[j].title);
+		/*else if (ifSubFolder == true){
+			folder.push(children[j].title); 
+			//b.push(children[j].title);
+			console.log("SubFolder = " + children[j].title);
+			//b.main.folder = childr
 			var allChildren = bookmarks.getSubFoldersBookmarks(children[j]);
 			for(k=0;k<allChildren.length;k++){
-				console.log(allChildren[k].title);
+				sub.push(allChildren[k].title);
+				//b.push(allChildren[k].title);
+				console.log("Sub = " + allChildren[k].title);
 			}
-		}
+			//b.main.folder.sub = sub.slice(0);
+			
+		}*/
 		
 	
-	}
+	//}
+	/*b.uri = uri.slice(0);
+	b.folder = folder.slice(0);
+	b.sub = sub.slice(0);
+	allBookmarks.push(b);*/
+	//console.log(JSON.stringify(allBookmarks));
 
+}
 }
