@@ -1,6 +1,6 @@
 <html>
 <body>
-<tree type="places" id="mytree" place="place:terms=mozilla&amp;onlyBookmarked=1&amp;queryType=1">
+<tree type="places" id="mytree">
   <treecols>
     <treecol id="title" flex="1" primary="true" />
     <treecol id="url" flex="1" />
